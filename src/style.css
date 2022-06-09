@@ -11,5 +11,17 @@
 }
 
 #app, #app * {
-  border: 1px solid lightgrey;
+  /* border: 1px solid lightgrey; */
+}
+
+#app textarea {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: black;
+  color: limegreen;
+  font-size: x-large;
+  padding: 0.5rem;
+  white-space: pre-wrap;
+  height: 60vh;
+  width: 100%;
+  overflow-y: auto;
 }

@@ -1,13 +1,6 @@
 import "./reset.css";
 import "./style.css";
 
-const app = document.querySelector<HTMLDivElement>("#app")!;
-
-app.innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`;
-
 // Now we solve the puzzle!
 
 interface Towers {
@@ -46,7 +39,9 @@ function base(numDiscs: number, numTowers: number) {
   return (" " + "=".repeat(numDiscs * 2 + 3) + " ").repeat(numTowers);
 }
 
-function showTowers() {
+function showTowers(): string {
+  let asString = " \n";
+
   const highestTower = towers.towers.reduce<number>((max, curr) => {
     return curr.length > max ? curr.length : max;
   }, 0);
@@ -64,14 +59,24 @@ function showTowers() {
         row += centredLayer(0, towers.numLayers);
       }
     }
-    console.log(row);
+    asString += row + "\n";
   }
-  console.log(base(towers.numLayers, towers.numTowers));
+
+  asString += base(towers.numLayers, towers.numTowers) + "\n";
+
+  console.log(asString);
+
+  return asString;
 }
 
-function solve(layers: number, towers = 3) {
+function solve(layers: number, towers = 3): string {
   initTowers(layers, towers);
-  showTowers();
+  return showTowers();
 }
 
-solve(3);
+const app = document.querySelector<HTMLDivElement>("#app")!;
+
+app.innerHTML = `
+  <h1>Towers of Hanoi</h1>
+  <textarea class="">${solve(5)}</textarea>
+`;
